@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticationComponent from '../components/AuthenticationComponent';
+import AuthenticationComponent from '../components/Authentication';
 
 const LoginPage = () => {
     return (

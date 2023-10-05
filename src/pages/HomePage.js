@@ -10,38 +10,39 @@ import {
     DialogContentText,
     DialogTitle
 } from '@mui/material';
-import QRCodeScannerComponent from '../components/QRCodeScannerComponent';
-import QRCodeManagementComponent from '../components/QRCodeManagementComponent';
-import WebRTCComponent from '../components/WebRTCComponent';
-
+import QRCodeScannerComponent from '../components/QRCodeScanner';
+import QRCodeManagementComponent from '../components/QRManagement';
+import WebRTCComponent from '../components/WebRTC';
+import { useAuth } from '../AuthContext';
 const HomePage = () => {
-    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+    const { isAuthenticated } = useAuth();
+    const { setAuthStatus } = useAuth();
     const [openLoginDialog, setOpenLoginDialog] = React.useState(!isAuthenticated);
 
     const handleLogin = () => {
         // Simulate successful authentication
-        setIsAuthenticated(true);
+        setAuthStatus(true);
         setOpenLoginDialog(false);
     };
 
     return (
         <Container maxWidth="md">
-        <Typography variant="h4" component="div" gutterBottom>
-            Home Page
+        <Typography variant="h4" component="div" gutterBottom style={{margin: ' 0 4em ',justifyContent:'center'}}>
+               Welcome User
         </Typography>
 
-        {/* QR Code Scanner Component */}
-        <QRCodeScannerComponent />
 
-        <Divider style={{ margin: '2em 0' }} />
-
+        <br></br>
         {/* QR Code Management Component */}
         <QRCodeManagementComponent />
 
-        <Divider style={{ margin: '2em 0' }} />
+        <Divider style={{ margin: '5em 0' }} />
 
-        {/* WebRTC Component */}
-        <WebRTCComponent />
+                {/* QR Code Scanner Component */}
+                <QRCodeScannerComponent />
+        <Divider style={{ margin: '5em 0' }} />
+
+
 
         <Dialog
             open={openLoginDialog}
@@ -62,6 +63,7 @@ const HomePage = () => {
             </Button>
             </DialogActions>
         </Dialog>
+
         </Container>
     );
 };
